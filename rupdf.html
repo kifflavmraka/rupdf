@@ -8,14 +8,23 @@
       <textarea 
         id="csv-textarea" 
         placeholder="Paste CSV here"
-      ></textarea>
+      >row1asd1,row1asd2</textarea>
       <button id="submit">Submit CSV</button>
     </div>
     
     <script>
       $('#submit').on('click', function(e) {
         const csvInput = $('#csv-textarea').val();
-        console.log(csvInput);
+        const rows = csvInput.split('\n');
+        rows.forEach(row => {
+          const [name, family] = row.split(',');
+          const doc = new jspdf.jsPDF();
+
+          doc.fromHTML(`
+<div><h1 style="color:darkseagreen">kiffl<h1></div>
+`);
+          doc.save("a4.pdf");
+        });
       });
     </script>
   </body>
