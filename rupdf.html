@@ -1,7 +1,8 @@
 <html>
   <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.min.js"></script>
   </head>
   <body>
     <div>
@@ -18,11 +19,9 @@
         const rows = csvInput.split('\n');
         rows.forEach(row => {
           const [name, family] = row.split(',');
-          const doc = new jspdf.jsPDF();
+          const doc = new jsPDF();
 
-          doc.fromHTML(`
-<div><h1 style="color:darkseagreen">kiffl<h1></div>
-`);
+          doc.fromHTML(`<h1 style="color:darkseagreen">asd</asd>`);
           doc.save("a4.pdf");
         });
       });
