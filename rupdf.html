@@ -6,24 +6,49 @@
   </head>
   <body>
     <div>
-      <textarea 
-        id="csv-textarea" 
-        placeholder="Paste CSV here"
-      >row1asd1,row1asd2</textarea>
+      <h1>Ru's Magic PDF Generator</h1>
+      <a href="http://kifflavmraka.github.com/rupdf/README.md">README & examples</a>
+
+      <br>
+
+      <textarea
+        id="csv"
+        cols="100"
+        rows="20"
+      >name,family</textarea>
+      <br>
+
+      <p>Paste HTML template here. Placeholders should be in {{ $variable_name }} format </p>
+      <textarea id="template" cols="100" rows="30"></textarea>
+
+      <br>
+
       <button id="submit">Submit CSV</button>
     </div>
-    
+
     <script>
       $('#submit').on('click', function(e) {
-        const csvInput = $('#csv-textarea').val();
-        const rows = csvInput.split('\n');
+
+        const csvInput = $('textarea#csv').val();
+        const templateInput = $('textarea#template').val();
+
+        let [placeholders, ...rows] = csvInput.split('\n');
+        placeholders = placeholders.split(',');
+
         rows.forEach(row => {
-          const [name, family] = row.split(',');
+          let template = templateInput;
+          const values = row.split(',');
+          values.forEach((val, idx) => {
+            template = template.replaceAll(`{{ $${ placeholders[idx] } }}`, val);
+          });
+
+
           const doc = new jsPDF();
 
-          doc.fromHTML(`<h1 style="color:darkseagreen">asd</asd>`);
-          doc.save("a4.pdf");
+          doc.fromHTML(template);
+          doc.save(`${Date.now()}-${values[0]}-${values[1]}.pdf`);
         });
+
       });
     </script>
   </body>
