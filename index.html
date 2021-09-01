@@ -15,11 +15,16 @@
         id="csv"
         cols="100"
         rows="20"
-      >name,family</textarea>
+        placeholder="Paste CSV here. First row should contain the template keys"
+      ></textarea>
       <br>
 
-      <p>Paste HTML template here. Placeholders should be in {{ $variable_name }} format </p>
-      <textarea id="template" cols="100" rows="30"></textarea>
+      <textarea
+        id="template"
+        cols="100"
+        rows="30"
+        placeholder="Paste HTML template here. Placeholders should be in {{ $key_name }} format"
+      ></textarea>
 
       <br>
 
